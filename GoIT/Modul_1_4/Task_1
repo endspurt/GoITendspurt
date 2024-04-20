@@ -2,25 +2,15 @@
 from datetime import datetime
 
 def get_days_from_today(date):
-    """
-    Calculates the number of days between a given date and today's date.
-    
-    Parameters:
-        date (str): The date in the format 'YYYY-MM-DD'.
-    
-    Returns:
-        int: The number of days between the given date and today's date.
-             The result is negative if the given date is in the future.
-    """
-    # Convert the input string to a datetime object
-    input_date = datetime.strptime(date, "%Y-%m-%d").date()
-    # Get today's date
-    today = datetime.today().date()
-    # Calculate the difference in days
-    delta = input_date - today
+    # Convert the given date string to a datetime object
+    given_date = datetime.strptime(date, '%Y-%m-%d').date()
+    # Get today's date as a datetime object
+    today_date = datetime.today().date()
+    # Calculate the difference between the given date and today's date
+    delta = today_date - given_date
+    # Return the difference in days as an integer
     return delta.days
 
-# Example usage of the function
-# These calls will demonstrate how the function works. The output will vary depending on today's date.
-print(get_days_from_today("2020-10-09"))  # Example output might vary
-print(get_days_from_today("2023-12-25"))  # Example output might vary
+# Example function call
+result = get_days_from_today("2024-04-09")
+print(result)
