@@ -14,6 +14,5 @@ def get_numbers_ticket(min, max, quantity):
 
 # Example usage of the function
 lottery_numbers = get_numbers_ticket(1, 49, 6)
-if lottery_numbers:
-    print("Your lottery ticket numbers:", lottery_numbers)
+print("Your lottery ticket numbers:", lottery_numbers)
 
