@@ -1,16 +1,20 @@
-
 from datetime import datetime
 
 def get_days_from_today(date):
-    # Convert the given date string to a datetime object
-    given_date = datetime.strptime(date, '%Y-%m-%d').date()
-    # Get today's date as a datetime object
-    today_date = datetime.today().date()
-    # Calculate the difference between the given date and today's date
-    delta = today_date - given_date
-    # Return the difference in days as an integer
-    return delta.days
+    
+    try:
+        # Convert the input string to a datetime object
+        input_date = datetime.strptime(date, "%Y-%m-%d").date()
+        # Get today's date
+        today = datetime.today().date()
+        # Calculate the difference in days
+        delta = input_date - today
+        return delta.days
+    except ValueError as e:
+        # Print an error message if the input format is incorrect
+        print(f"Please enter the date in the correct format 'YYYY-MM-DD'. Error: {e}")
 
-# Example function call
-result = get_days_from_today("2024-04-09")
-print(result)
+# Examples of using the function
+# These calls demonstrate how the function works. 
+print(get_days_from_today("2020-10-09"))  # Example output 
+print(get_days_from_today("2023-12-25"))  # Example output 
