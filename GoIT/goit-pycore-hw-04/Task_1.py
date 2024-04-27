@@ -19,7 +19,7 @@ def total_salary(path):
         else:
             average_salary = 0
 
-        # Return a tuple of total sum and average salary
+        # Return total sum and average salary
         return total_sum, average_salary
     except FileNotFoundError:
         # Handle the case where the file is not found
@@ -29,9 +29,6 @@ def total_salary(path):
         # Handle other possible exceptions
         print(f"An error occurred: {e}")
         return None
-
-
-
 
 
 print(os.path.exists("GoIT\goit-pycore-hw-04\Task_1_file.txt"))
