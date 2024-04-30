@@ -36,3 +36,4 @@ def number_of_groups(n, k):
 n = 50  # Gesamtzahl der Personen
 k = 7   # Anzahl der Gewinner
 print(number_of_groups(n, k))
+
