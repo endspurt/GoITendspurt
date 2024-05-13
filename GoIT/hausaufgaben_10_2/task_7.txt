@@ -1,0 +1,51 @@
+Lassen Sie uns den erweiterten Code für die `Vector`-Klasse, einschließlich der Addition und Subtraktion von Vektoren, schrittweise durchgehen:
+
+### Klasse `Point`
+Diese Klasse repräsentiert einen Punkt im 2D-Raum durch seine Koordinaten `x` und `y`.
+
+#### 1. **Konstruktor (`__init__`)**
+   - **Zweck:** Initialisiert eine neue Instanz von `Point` mit den gegebenen Koordinaten `x` und `y`.
+   - **Ablauf:**
+     - Die Koordinaten werden zunächst auf `None` gesetzt.
+     - Anschließend werden die Setter für `x` und `y` aufgerufen, die die Werte setzen, sofern sie von den Typen `int` oder `float` sind.
+
+#### 2. **Properties und Setter**
+   - **Getter und Setter für `x` und `y`:** Stellen sicher, dass die Werte der Koordinaten nur gesetzt werden können, wenn sie numerisch sind (int oder float).
+
+#### 3. **String-Repräsentation (`__str__`)**
+   - **Zweck:** Gibt eine lesbare Darstellung des `Point`-Objekts aus.
+   - **Ablauf:** Erzeugt einen String der Form `Point(x, y)`.
+
+### Klasse `Vector`
+Diese Klasse repräsentiert einen Vektor im Raum, definiert durch einen Startpunkt und einen Endpunkt.
+
+#### 1. **Konstruktor (`__init__`)**
+   - **Zweck:** Initialisiert eine neue Instanz von `Vector` mit einem gegebenen Endpunkt.
+   - **Ablauf:** Der Startpunkt wird immer auf den Ursprung (0,0) gesetzt, und der Endpunkt wird als `Point`-Instanz gespeichert.
+
+#### 2. **Indexzugriff (`__getitem__` und `__setitem__`)**
+   - **Zweck:** Ermöglichen den Zugriff auf und die Modifikation der x- und y-Koordinaten des Vektors mittels Index.
+   - **Ablauf:** `__getitem__` gibt den Wert der x- oder y-Koordinate zurück, `__setitem__` setzt diese Werte.
+
+#### 3. **String-Repräsentation (`__str__`)**
+   - **Zweck:** Gibt eine lesbare Darstellung des `Vector`-Objekts aus.
+   - **Ablauf:** Erzeugt einen String der Form `Vector(x, y)`.
+
+#### 4. **Funktor (`__call__`)**
+   - **Zweck:** Ermöglicht das Aufrufen einer Instanz wie eine Funktion.
+   - **Ablauf:** Ohne Argument gibt sie die Koordinaten zurück. Mit einem numerischen Argument skaliert sie den Vektor und gibt die skalierten Koordinaten zurück.
+
+#### 5. **Addition (`__add__`)**
+   - **Zweck:** Definiert die Addition zweier Vektoren.
+   - **Ablauf:** Addiert die x- und y-Koordinaten der beiden Vektoren und gibt einen neuen `Vector` mit diesen Summenkoordinaten zurück.
+
+#### 6. **Subtraktion (`__sub__`)**
+   - **Zweck:** Definiert die Subtraktion zweier Vektoren.
+   - **Ablauf:** Subtrahiert die x- und y-Koordinaten des zweiten Vektors von denen des ersten und gibt einen neuen `Vector` mit diesen Differenzkoordinaten zurück.
+
+### Beispielverwendung
+- **Erstellung von zwei Vektoren:** Zwei Instanzen von `Vector` werden erstellt, eine mit Koordinaten (1, 10) und eine mit (10, 10).
+- **Addition und Subtraktion:** Diese Instanzen werden addiert und subtrahiert, was neue `Vector`-Instanzen mit den Ergebniskoordinaten ergibt.
+- **Ausgabe der Ergebnisse:** Die Resultate der Operationen werden in ihrer String-Repräsentation ausgegeben, welche die neuen Koordinaten zeigt.
+
+Dieser Code demonstriert, wie mathematische Operationen in Python durch Überschreiben spezieller Methoden implementiert werden können, um intuitive und lesbare Vektoroperationen zu ermöglichen.
