@@ -1,0 +1,48 @@
+Klasse Point
+Diese Klasse ist dafür gedacht, einen Punkt im zweidimensionalen Raum zu repräsentieren, gekennzeichnet durch Koordinaten x und y.
+
+1. Konstruktor (__init__)
+Zweck: Initialisiert eine Instanz der Klasse Point.
+Parameter: x und y sind die Koordinaten des Punktes.
+Funktionsweise:
+self.__x und self.__y: Privatvariablen, die die Koordinaten speichern. Initial sind sie None.
+Die Setter-Methoden für x und y werden aufgerufen, um die übergebenen Werte zuzuweisen.
+2. Property für x
+Getter: Gibt den Wert von __x zurück.
+Setter:
+Überprüft, ob der zugewiesene Wert vom Typ int oder float ist.
+Weist den Wert zu, wenn die Bedingung erfüllt ist.
+3. Property für y
+Funktioniert identisch zur Property für x.
+4. Methode __str__
+Zweck: Gibt eine String-Repräsentation des Point-Objekts zurück.
+Funktionsweise: Erzeugt und gibt den String Point(x, y) zurück, wobei x und y die aktuellen Werte der Koordinaten sind.
+Klasse Vector
+Diese Klasse repräsentiert einen Vektor im Raum, definiert durch einen Startpunkt (immer der Ursprung) und einen Endpunkt.
+
+1. Konstruktor (__init__)
+Zweck: Initialisiert eine Instanz der Klasse Vector.
+Parameter: end_point ist eine Instanz von Point, die den Endpunkt des Vektors darstellt.
+Funktionsweise:
+self.start_point: Initialisiert als Point(0, 0), stellt den Ursprung dar.
+self.coordinates: Speichert das end_point-Objekt als Endpunkt des Vektors.
+2. Methode __setitem__
+Zweck: Ermöglicht das Setzen der Koordinaten über einen Index.
+Parameter: index (0 für x, 1 für y) und value (der neue Wert).
+Funktionsweise:
+Überprüft den index und weist value entsprechend zu: x für Index 0, y für Index 1.
+Wirft einen IndexError, wenn der Index ungültig ist.
+3. Methode __getitem__
+Zweck: Ermöglicht das Abrufen der Koordinaten über einen Index.
+Parameter: index.
+Funktionsweise:
+Gibt den Wert von x oder y zurück, abhängig vom index.
+Wirft einen IndexError, wenn der Index ungültig ist.
+4. Methode __str__
+Zweck: Gibt eine String-Repräsentation des Vector-Objekts zurück.
+Funktionsweise: Erzeugt und gibt den String Vector(x, y) zurück, basierend auf den Koordinaten des coordinates-Objekts (Endpunkt).
+
+Beispielverwendung
+Erzeugt ein Vector-Objekt mit einem Endpunkt bei (1, 10).
+Ändert die x-Koordinate des Vektors auf 10 und gibt die Koordinaten über die __getitem__-Methode und die gesamte Vektordarstellung über die __str__-Methode aus.
+Durch diesen schrittweisen Ansatz kannst du sehen, wie Objekte und Methoden miteinander interagieren, um die gewünschte Funktionalität zu erreichen. Jede Klasse und Methode erfüllt eine spezifische Rolle, die zusammen das Endziel der Vektorrepräsentation ermöglicht.
