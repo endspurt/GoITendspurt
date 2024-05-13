@@ -1,0 +1,67 @@
+Natürlich, lass uns den Code für die Klasse `Vector` und ihre Funktionalitäten, einschließlich des Skalarprodukts, Schritt für Schritt durchgehen. Hierbei konzentrieren wir uns auf die einzelnen Komponenten und Operationen, die durch den erweiterten Code ermöglicht werden.
+
+### Klasse `Point`
+Die Klasse `Point` dient zur Repräsentation eines Punktes in einem zweidimensionalen Koordinatensystem.
+
+#### 1. **Konstruktor (`__init__`)**:
+   - **Zweck**: Initialisiert ein `Point`-Objekt mit den gegebenen Koordinaten `x` und `y`.
+   - **Ablauf**:
+     - `self.__x` und `self.__y` werden initial auf `None` gesetzt.
+     - Die Setter-Methoden für `x` und `y` werden aufgerufen, um die Werte zu setzen, wenn diese von den Typen `int` oder `float` sind.
+
+#### 2. **Properties (`x` und `y`)**:
+   - **Getter**: Gibt die Werte der privaten Variablen `__x` bzw. `__y` zurück.
+   - **Setter**: Setzt den Wert der privaten Variablen `__x` bzw. `__y`, wenn der übergebene Wert vom Typ `int` oder `float` ist.
+
+#### 3. **String-Repräsentation (`__str__`)**:
+   - **Zweck**: Gibt eine lesbare String-Darstellung eines `Point`-Objekts zurück.
+   - **Ablauf**: Erstellt einen String der Form `Point(x, y)`.
+
+### Klasse `Vector`
+Die Klasse `Vector` repräsentiert einen Vektor, der vom Ursprung (0, 0) zu einem Punkt (`end_point`) verläuft.
+
+#### 1. **Konstruktor (`__init__`)**:
+   - **Zweck**: Initialisiert eine neue Instanz von `Vector`.
+   - **Ablauf**:
+     - Der `start_point` wird auf den Ursprung (0, 0) gesetzt.
+     - `self.coordinates` speichert den übergebenen `end_point`, der die Koordinaten des Vektorendpunktes darstellt.
+
+#### 2. **Indexzugriff (`__getitem__` und `__setitem__`)**:
+   - **Zweck**: Ermöglicht den Zugriff und die Modifikation der x- und y-Koordinaten des Vektorendpunkts mittels Indizes.
+   - **Ablauf**:
+     - `__getitem__`: Gibt den Wert von `x` oder `y` zurück, abhängig vom Index.
+     - `__setitem__`: Setzt den Wert von `x` oder `y`, abhängig vom Index.
+
+#### 3. **String-Repräsentation (`__str__`)**:
+   - **Zweck**: Erzeugt eine lesbare Darstellung des `Vector`-Objekts.
+   - **Ablauf**: Gibt einen String `Vector(x, y)` zurück.
+
+#### 4. **Funktor (`__call__`)**:
+   - **Zweck**: Ermöglicht es, eine Instanz von `Vector` wie eine Funktion aufzurufen.
+   - **Ablauf**:
+     - Ohne Argument: Gibt die Koordinaten des Vektors zurück.
+     - Mit einem Skalar als Argument: Gibt die skalierten Koordinaten zurück.
+
+#### 5. **Addition (`__add__`)**:
+   - **Zweck**: Definiert die Addition zweier Vektoren.
+   - **Ablauf**:
+     - Addiert die Koordinaten der beiden Vektoren und gibt einen neuen `Vector` mit diesen Summenkoordinaten zurück.
+
+#### 6. **Subtraktion (`__sub__`)**:
+   - **Zweck**: Definiert die Subtraktion zweier Vektoren.
+   - **Ablauf**:
+     - Subtrahiert die Koordinaten des zweiten Vektors von denen des ersten und gibt einen neuen `Vector` mit diesen Differenzkoordinaten zurück.
+
+#### 7. **Skalarprodukt (`__mul__`)**:
+   - **Zweck**: Berechnet das Skalarprodukt zweier Vektoren.
+   - **Ablauf**:
+     - Multipliziert die x-Koordinaten und die y-Koordinaten der beiden Vektoren miteinander und summiert die Produkte, um das Skalarprodukt zu erhalten.
+
+### Beispiel
+
+verwendung
+- **Erstellung von zwei Vektoren**: Zwei Instanzen von `Vector` werden mit unterschiedlichen Endpunkten erstellt.
+- **Operationen**: Die Vektoren werden addiert, subtrahiert und durch das Skalarprodukt miteinander verknüpft.
+- **Ausgabe**: Die Ergebnisse der Operationen werden ausgegeben.
+
+Jede dieser Operationen und Methoden zeigt die Flexibilität und Leistungsfähigkeit der objektorientierten Programmierung in Python, insbesondere wie durch Überschreiben spezieller Methoden intuitive und kraftvolle Operatoren für benutzerdefinierte Klassen erstellt werden können.
