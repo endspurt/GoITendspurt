@@ -1,0 +1,42 @@
+Klar, ich werde den Code der `Point`- und `Vector`-Klassen Schritt für Schritt erklären, um sicherzustellen, dass alle Teile und ihre Funktionsweisen klar verstanden werden.
+
+### Klasse `Point`
+
+1. **Konstruktor `__init__`**:
+   - `self.__x` und `self.__y`: Zwei private Variablen, die initial auf `None` gesetzt werden. Diese werden die Koordinaten des Punktes speichern, sind aber anfangs noch nicht festgelegt.
+   - `self.x = x` und `self.y = y`: Dies setzt die Werte von `x` und `y` über die Setter-Methoden, die weiter unten definiert werden.
+
+2. **Properties `x` und `y`**:
+   - **Getter**: Diese Methoden (`def x(self)` und `def y(self)`) geben die aktuellen Werte von `__x` und `__y` zurück.
+   - **Setter**: Diese Methoden (`def x(self, x)` und `def y(self, y)`) setzen die Werte von `__x` und `__y`. Vor dem Setzen überprüfen sie, ob der neue Wert vom Typ `int` oder `float` ist, um sicherzustellen, dass die Koordinaten nur numerische Werte annehmen.
+
+3. **Methode `__str__`**:
+   - Diese Methode gibt eine lesbare String-Darstellung eines `Point`-Objekts zurück, was beim Debuggen und Anzeigen von Punkten hilfreich ist.
+
+### Klasse `Vector`
+
+1. **Konstruktor `__init__`**:
+   - `self.coordinates`: Hier wird ein `Point`-Objekt gespeichert, das die Koordinaten des Vektors repräsentiert.
+
+2. **Methoden `__setitem__` und `__getitem__`**:
+   - **`__setitem__`**: Ermöglicht das Setzen der Koordinaten über Indizes. `index = 0` setzt `x`, `index = 1` setzt `y`. Bei einem ungültigen Index wird ein Fehler ausgelöst.
+   - **`__getitem__`**: Ermöglicht das Abrufen der Koordinaten über Indizes. `index = 0` gibt `x` zurück, `index = 1` gibt `y` zurück. Auch hier wird bei einem ungültigen Index ein Fehler ausgelöst.
+
+3. **Methode `__call__`**:
+   - Diese Methode ermöglicht es, das `Vector`-Objekt wie eine Funktion aufzurufen. Wenn ein Wert übergeben wird, multipliziert sie die `x`- und `y`-Koordinaten mit diesem Wert (Skalierung des Vektors).
+
+4. **Operatoren `__add__`, `__sub__`, und `__mul__`**:
+   - **`__add__`**: Addiert zwei Vektoren. Die Ergebnisse der x- und y-Koordinaten werden summiert und ein neuer `Vector` mit diesen Summen als Koordinaten wird zurückgegeben.
+   - **`__sub__`**: Subtrahiert zwei Vektoren. Die Differenzen der x- und y-Koordinaten werden berechnet und als neue Koordinaten eines `Vector` zurückgegeben.
+   - **`__mul__`**: Berechnet das Skalarprodukt zweier Vektoren. Die Produkte der entsprechenden Koordinaten werden addiert.
+
+5. **Methode `len`**:
+   - Berechnet die Länge (oder den Betrag) des Vektors mit dem Satz des Pythagoras.
+
+6. **Vergleichsmethoden (`__eq__`, `__ne__`, `__lt__`, `__gt__`, `__le__`, `__ge__`)**:
+   - Diese Methoden ermöglichen es, Vektoren basierend auf ihrer Länge zu vergleichen. Sie rufen `len()` auf beiden Vektoren auf und führen dann den entsprechenden Vergleich durch.
+
+7. **Methode `__str__`**:
+   - Gibt eine lesbare Darstellung des Vektors zurück. Dies ist nützlich für das Debugging und zur Überprüfung von Vektorzuständen.
+
+Dieses Design macht die Klasse `Vector` sehr vielseitig, da sie nicht nur mathematische Operationen wie Addition und Subtraktion unterstützt, sondern auch Funktionen wie direktes Setzen und Abrufen von Koordinaten, das Überladen von Vergleichsoperatoren und das Aufrufen als Funktion
