@@ -1,0 +1,92 @@
+Natürlich! Lassen Sie uns den Code Stück für Stück durchgehen, um jedes Detail zu verstehen.
+
+### Klasse `Point`
+
+**1. Konstruktor `__init__`:**
+```python
+def __init__(self, x, y):
+    self.__x = None
+    self.__y = None
+    self.x = x
+    self.y = y
+```
+- Der Konstruktor nimmt zwei Parameter `x` und `y`, die die Koordinaten des Punktes repräsentieren.
+- `self.__x` und `self.__y` sind private Attribute, um die Kapselung zu gewährleisten, d.h., sie sind von außerhalb der Klasse nicht direkt zugänglich.
+- Die Werte von `x` und `y` werden über die Setter gesetzt, die sicherstellen, dass die Werte den richtigen Typ (int oder float) haben.
+
+**2. Properties und Setter für `x` und `y`:**
+```python
+@property
+def x(self):
+    return self.__x
+
+@x.setter
+def x(self, x):
+    if isinstance(x, (int, float)):
+        self.__x = x
+```
+- Diese Methode gibt den Wert von `x` zurück.
+- Der Setter überprüft, ob der neue Wert ein Integer oder Float ist. Falls ja, wird der Wert von `x` aktualisiert.
+
+**3. `__str__` Methode:**
+```python
+def __str__(self):
+    return f"Point({self.x},{self.y})"
+```
+- Diese Methode gibt eine String-Darstellung des `Point`-Objekts zurück. Nützlich für Debugging und Ausgabe.
+
+### Klasse `Vector`
+
+**1. Konstruktor `__init__`:**
+```python
+def __init__(self, coordinates: Point):
+    self.coordinates = coordinates
+```
+- Der Konstruktor nimmt ein Objekt der Klasse `Point` als Parameter. Dieses Objekt repräsentiert die Koordinaten des Vektors.
+
+**2. Methoden `__setitem__` und `__getitem__`:**
+```python
+def __setitem__(self, index, value):
+    if index == 0:
+        self.coordinates.x = value
+    elif index == 1:
+        self.coordinates.y = value
+
+def __getitem__(self, index):
+    if index == 0:
+        return self.coordinates.x
+    elif index == 1:
+        return self.coordinates.y
+```
+- Diese Methoden ermöglichen es, die Koordinaten des Vektors wie bei einem Array über Indizes zu setzen (`__setitem__`) und zu bekommen (`__getitem__`).
+
+**3. Methode `__call__`:**
+```python
+def __call__(self, value=None):
+    if value:
+        self.coordinates.x *= value
+        self.coordinates.y *= value
+    return self.coordinates.x, self.coordinates.y
+```
+- Die Methode ermöglicht es, den Vektor zu skalieren, wenn ein Wert übergeben wird, und gibt die Koordinaten des Vektors zurück.
+
+**4. Addition, Subtraktion und Skalarprodukt (`__add__`, `__sub__`, `__mul__`):**
+- Diese Methoden implementieren die Addition, Subtraktion und das Skalarprodukt von zwei Vektoren. Sie nutzen die Koordinaten der Vektoren 
+für die Berechnungen und geben neue `Vector`-Instanzen zurück.
+
+**5. Methode `len`:**
+```python
+def len(self):
+    return (self.coordinates.x ** 2 + self.coordinates.y ** 2) ** 0.5
+```
+- Diese Methode berechnet die Länge des Vektors basierend auf dem Satz des Pythagoras. Diese Länge ist die Wurzel aus der Summe der Quadrate der Koordinaten.
+
+**6. `__str__` Methode:**
+```python
+def __str__(self):
+    return f"Vector({self.coordinates.x},{self.coordinates.y})"
+```
+- Gibt eine String-Repräsentation des `Vector`-Objekts zurück, ähnlich der `__str__`-Methode in der `Point`-Klasse.
+
+Jede dieser Methoden und Eigenschaften trägt dazu bei, dass die `Vector`-Klasse vielseitig einsetzbar und leicht in verschiedenen 
+Kontexten verwendbar ist, sei es für mathematische Berechnungen, grafische Anwendungen oder andere Bereiche, in denen Vektoroperationen benötigt werden.
