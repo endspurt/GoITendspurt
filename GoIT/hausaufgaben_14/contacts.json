@@ -1,8 +1,8 @@
 {
-    "John Doe": {
-        "address": "123 Elm St",
-        "phone": "+1234567890",
-        "email": "john.doe@example.com",
-        "birthday": "1990-05-20"
+    "Michael Schmidt": {
+        "address": "Johannes Str. 139",
+        "phone": "+4934567890",
+        "email": "michael.schmidt@web.de",
+        "birthday": "1980-01-01"
     }
 }
