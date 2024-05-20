@@ -120,8 +120,8 @@ def main():
     notes = load_data(notes_file)
     
     # Example operations
-    add_contact(contacts, 'John Doe', '123 Elm St', '+1234567890', 'john.doe@example.com', '1990-05-20')
-    add_note(notes, 'Meeting Notes', 'Discuss project requirements.', ['meeting', 'project'])
+    add_contact(contacts, 'Max Mustermann', 'Berliner Str. 1', '+4934567890', 'max.mustermann@google.de', '1975-05-20')
+    add_note(notes, 'Meeting-Gespraech', 'Bespraechung.', ['meeting', 'project'])
     
     save_data(contacts_file, contacts)
     save_data(notes_file, notes)
@@ -130,7 +130,7 @@ def main():
     print('Notes:', notes)
     
     print('Upcoming Birthdays:', upcoming_birthdays(contacts, 7))
-    print('Search Contacts:', search_contacts(contacts, 'John'))
+    print('Search Contacts:', search_contacts(contacts, 'Max'))
     print('Search Notes by Tag:', search_notes_by_tag(notes, 'meeting'))
     print('Command Suggestions:', suggest_command('add_'))
 
