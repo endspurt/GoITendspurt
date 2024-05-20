@@ -1,0 +1,139 @@
+Gerne, hier ist eine schrittweise Erläuterung der Aufgabe und des Codes:
+
+### 1. Ziel der Aufgabe
+
+Die Aufgabe besteht darin, die Klasse `Contacts` zu erweitern. Ein neues Attribut `is_unpacking` soll hinzugefügt werden, welches standardmäßig den Wert `False` hat. Zusätzlich soll die magische Methode `__setstate__` implementiert werden, die dieses Attribut auf `True` setzt, wenn eine Instanz der Klasse entpackt wird. Dies zeigt an, dass die Instanz durch Entpacken erhalten wurde.
+
+### 2. Ausgangspunkt: Der ursprüngliche Code
+
+Hier ist der ursprüngliche Code, auf den die Erweiterung aufbaut:
+
+```python
+import pickle
+
+class Person:
+    def __init__(self, name: str, email: str, phone: str, favorite: bool):
+        self.name = name
+        self.email = email
+        self.phone = phone
+        self.favorite = favorite
+
+class Contacts:
+    def __init__(self, filename: str, contacts: list[Person] = None):
+        if contacts is None:
+            contacts = []
+        self.filename = filename
+        self.contacts = contacts
+        self.count_save = 0
+
+    def save_to_file(self):
+        with open(self.filename, "wb") as file:
+            pickle.dump(self, file)
+
+    def read_from_file(self):
+        with open(self.filename, "rb") as file:
+            content = pickle.load(file)
+        return content
+
+    def __getstate__(self):
+        attributes = self.__dict__.copy()
+        attributes["count_save"] = attributes["count_save"] + 1
+        return attributes
+
+    def __setstate__(self, value):
+        pass  # Diese Methode muss noch implementiert werden
+```
+
+### 3. Hinzufügen des neuen Attributs `is_unpacking`
+
+Zuerst fügen wir der Klasse `Contacts` das Attribut `is_unpacking` hinzu und setzen es standardmäßig auf `False`.
+
+```python
+class Contacts:
+    def __init__(self, filename: str, contacts: list[Person] = None):
+        if contacts is None:
+            contacts = []
+        self.filename = filename
+        self.contacts = contacts
+        self.count_save = 0
+        self.is_unpacking = False  # Neues Attribut hinzugefügt
+```
+
+### 4. Implementierung der Methode `__setstate__`
+
+Die Methode `__setstate__` wird verwendet, um den Zustand eines Objekts nach dem Entpacken wiederherzustellen. In dieser Methode setzen wir das Attribut `is_unpacking` auf `True`.
+
+```python
+def __setstate__(self, state):
+    self.__dict__.update(state)
+    self.is_unpacking = True  # Attribut auf True setzen beim Entpacken
+```
+
+### 5. Gesamtcode nach der Erweiterung
+
+Hier ist der vollständige Code nach der Erweiterung:
+
+```python
+import pickle
+
+class Person:
+    def __init__(self, name: str, email: str, phone: str, favorite: bool):
+        self.name = name
+        self.email = email
+        self.phone = phone
+        self.favorite = favorite
+
+class Contacts:
+    def __init__(self, filename: str, contacts: list[Person] = None):
+        if contacts is None:
+            contacts = []
+        self.filename = filename
+        self.contacts = contacts
+        self.count_save = 0
+        self.is_unpacking = False  # Neues Attribut hinzugefügt
+
+    def save_to_file(self):
+        with open(self.filename, "wb") as file:
+            pickle.dump(self, file)
+
+    def read_from_file(self):
+        with open(self.filename, "rb") as file:
+            content = pickle.load(file)
+        return content
+
+    def __getstate__(self):
+        attributes = self.__dict__.copy()
+        attributes["count_save"] = attributes["count_save"] + 1
+        return attributes
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self.is_unpacking = True  # Attribut auf True setzen beim Entpacken
+
+# Beispiel der Verwendung
+contacts = [Person("John Doe", "john@example.com", "1234567890", False)]
+persons = Contacts("user_class.dat", contacts)
+persons.save_to_file()
+person_from_file = persons.read_from_file()
+print(persons.is_unpacking)  # False
+print(person_from_file.is_unpacking)  # True
+```
+
+### 6. Beispiel der Verwendung
+
+Im Beispiel wird eine Liste von Kontakten erstellt und eine Instanz der Klasse `Contacts` gespeichert und wieder aus der Datei gelesen. Das Attribut `is_unpacking` wird überprüft, um zu bestätigen, dass es beim Speichern `False` und nach dem Entpacken `True` ist:
+
+```python
+contacts = [Person("John Doe", "john@example.com", "1234567890", False)]
+persons = Contacts("user_class.dat", contacts)
+persons.save_to_file()
+person_from_file = persons.read_from_file()
+print(persons.is_unpacking)  # False
+print(person_from_file.is_unpacking)  # True
+```
+
+### Zusammenfassung
+
+- Ein neues Attribut `is_unpacking` wurde der Klasse `Contacts` hinzugefügt und standardmäßig auf `False` gesetzt.
+- Die Methode `__setstate__` wurde implementiert, um `is_unpacking` beim Entpacken auf `True` zu setzen.
+- Ein Beispiel zeigt, dass `is_unpacking` beim Speichern `False` und nach dem Entpacken `True` ist.
