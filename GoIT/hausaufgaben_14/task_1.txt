@@ -1,0 +1,94 @@
+Gerne erkläre ich Schritt für Schritt, wie der Code entstanden ist und welche Überlegungen dabei angestellt wurden:
+
+### Schritt 1: Definition der Klassen `Person` und `Contacts`
+
+Zunächst haben wir zwei Klassen definiert: `Person` und `Contacts`.
+
+**Klasse `Person`**
+Diese Klasse repräsentiert eine einzelne Person mit den Attributen Name, E-Mail, Telefonnummer und ob die Person als Favorit markiert ist.
+
+```python
+class Person:
+    def __init__(self, name: str, email: str, phone: str, favorite: bool):
+        self.name = name
+        self.email = email
+        self.phone = phone
+        self.favorite = favorite
+```
+
+**Klasse `Contacts`**
+Diese Klasse verwaltet eine Liste von `Person`-Objekten und kann diese Liste in eine Datei speichern oder aus einer Datei laden. Wir fügen später 
+die Funktionalität hinzu, um die Anzahl der Serialisierungen zu zählen.
+
+```python
+class Contacts:
+    def __init__(self, filename: str, contacts: list[Person] = None):
+        if contacts is None:
+            contacts = []
+        self.filename = filename
+        self.contacts = contacts
+        self.count_save = 0  # Attribut zum Zählen der Serialisierungen
+```
+
+### Schritt 2: Implementierung der Methoden zum Speichern und Laden
+
+Wir fügen Methoden hinzu, um die Liste von Kontakten in eine Datei zu speichern (`save_to_file`) und aus einer Datei zu laden (`read_from_file`).
+
+**Speichern in eine Datei**
+Die Methode öffnet eine Datei im Schreibmodus und speichert das `Contacts`-Objekt mittels `pickle`.
+
+```python
+def save_to_file(self):
+    with open(self.filename, "wb") as file:
+        pickle.dump(self, file)
+```
+
+**Laden aus einer Datei**
+Die Methode öffnet eine Datei im Lesemodus und lädt das `Contacts`-Objekt mittels `pickle`.
+
+```python
+def read_from_file(self):
+    with open(self.filename, "rb") as file:
+        content = pickle.load(file)
+    return content
+```
+
+### Schritt 3: Implementierung der Methode `__getstate__`
+
+Diese Methode wird verwendet, um den Zustand eines Objekts vor der Serialisierung anzupassen. In unserem Fall erhöhen wir den Wert von `count_save` 
+um 1 jedes Mal, wenn das Objekt serialisiert wird.
+
+```python
+def __getstate__(self):
+    state = self.__dict__.copy()  # Kopieren des aktuellen Zustands
+    state['count_save'] += 1      # Erhöhen des Zählers um 1
+    return state
+```
+
+### Schritt 4: Testen der Funktionalität
+
+Wir erstellen eine Liste von `Person`-Objekten und ein `Contacts`-Objekt. Dann speichern und laden wir dieses Objekt mehrmals und überprüfen den Wert von `count_save`.
+
+```python
+# Beispiel der Funktionalität
+contacts = [Person("Alice", "alice@example.com", "12345", True),
+            Person("Bob", "bob@example.com", "67890", False)]
+
+persons = Contacts("user_class.dat", contacts)
+persons.save_to_file()
+first = persons.read_from_file()
+first.save_to_file()
+second = first.read_from_file()
+second.save_to_file()
+third = second.read_from_file()
+
+print(persons.count_save)  # 0
+print(first.count_save)  # 1
+print(second.count_save)  # 2
+print(third.count_save)  # 3
+```
+
+### Zusammenfassung
+
+Durch das Hinzufügen des Attributs `count_save` und das Implementieren der Methode `__getstate__` können wir die Anzahl 
+der Serialisierungen eines `Contacts`-Objekts nachverfolgen. Bei jedem Speichern wird der Zähler um 1 erhöht, was durch den Testcode am Ende überprüft wird.
