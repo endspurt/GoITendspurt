@@ -5,5 +5,19 @@
             "meeting",
             "project"
         ]
+    },
+    "Meeting-Gespraech": {
+        "content": "Bespraechung.",
+        "tags": [
+            "meeting",
+            "project"
+        ]
+    },
+    "Arbeit macht nicht frei": {
+        "content": "Paxat i paxat.",
+        "tags": [
+            "project",
+            "plan"
+        ]
     }
 }

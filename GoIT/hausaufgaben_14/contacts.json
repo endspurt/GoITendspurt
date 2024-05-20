@@ -10,5 +10,11 @@
         "phone": "+1234567890",
         "email": "john.doe@example.com",
         "birthday": "1990-05-20"
+    },
+    "Max Mustermann": {
+        "address": "Berliner Str.1",
+        "phone": "+4987654321",
+        "email": "max.mustermann@google.com",
+        "birthday": "1975-10-15"
     }
 }

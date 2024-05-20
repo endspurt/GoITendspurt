@@ -68,7 +68,8 @@ def upcoming_birthdays(contacts, days):
     upcoming = {}
     for name, info in contacts.items():
         birthday = datetime.strptime(info['birthday'], '%Y-%m-%d')
-        if 0 <= (birthday - today).days <= days:
+        birthday_this_year = birthday.replace(year=today.year)
+        if 0 <= (birthday_this_year - today).days <= days:
             upcoming[name] = info
     return upcoming
 
@@ -120,8 +121,8 @@ def main():
     notes = load_data(notes_file)
     
     # Example operations
-    add_contact(contacts, 'Max Mustermann', 'Berliner Str. 1', '+4934567890', 'max.mustermann@google.de', '1975-05-20')
-    add_note(notes, 'Meeting-Gespraech', 'Bespraechung.', ['meeting', 'project'])
+    add_contact(contacts, 'Max Mustermann', 'Berliner Str.1', '+4987654321', 'max.mustermann@google.com', '1975-10-15')
+    add_note(notes, 'Arbeit macht nicht frei', 'Paxat i paxat.', ['project', 'plan'])
     
     save_data(contacts_file, contacts)
     save_data(notes_file, notes)
@@ -130,10 +131,11 @@ def main():
     print('Notes:', notes)
     
     print('Upcoming Birthdays:', upcoming_birthdays(contacts, 7))
-    print('Search Contacts:', search_contacts(contacts, 'Max'))
+    print('Search Contacts:', search_contacts(contacts, 'John'))
     print('Search Notes by Tag:', search_notes_by_tag(notes, 'meeting'))
     print('Command Suggestions:', suggest_command('add_'))
 
 if __name__ == '__main__':
     main()
+
 
