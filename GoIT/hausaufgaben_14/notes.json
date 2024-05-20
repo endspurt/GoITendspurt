@@ -19,5 +19,12 @@
             "project",
             "plan"
         ]
+    },
+    "Project Plan": {
+        "content": "Outline project milestones.",
+        "tags": [
+            "project",
+            "plan"
+        ]
     }
 }

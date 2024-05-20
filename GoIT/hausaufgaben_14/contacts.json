@@ -16,5 +16,11 @@
         "phone": "+4987654321",
         "email": "max.mustermann@google.com",
         "birthday": "1975-10-15"
+    },
+    "Jane Doe": {
+        "address": "456 Oak St",
+        "phone": "+1987654321",
+        "email": "jane.doe@example.com",
+        "birthday": "1985-10-15"
     }
 }
